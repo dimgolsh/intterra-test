@@ -1,13 +1,13 @@
 <template>
   <div class="table_filter_links">
     <router-link
-      v-for="filter in filters"
-      :key="filter.value"
-      :to="{ query: { [filter.key]: filter.value } }"
+      v-for="{ key, value, name } in filters"
+      :key="value"
+      :to="{ query: { [key]: value } }"
       exact
       active-class="link-active"
       class="table_filter_link"
-      >{{ filter.name }}</router-link
+      >{{ name }}</router-link
     >
   </div>
 </template>

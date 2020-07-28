@@ -10,11 +10,11 @@
         <tr>
           <th
             scope="col"
-            v-for="column in columns"
-            :key="column.key"
-            :style="`width: ${column.width};`"
+            v-for="{ title, key, width } in columns"
+            :key="key"
+            :style="`width: ${width};`"
           >
-            <sort-link :name="column.key">{{ column.title }}</sort-link>
+            <sort-link :name="key">{{ title }}</sort-link>
           </th>
         </tr>
       </thead>

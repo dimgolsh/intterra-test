@@ -6,16 +6,29 @@ export default class Locale {
     this.locales = {
       "ru-RU": ruIntterra
     };
+    this.currentLocale = this.checkLocale();
+  }
+  checkLocale() {
+    return this.locale in this.locales ? this.locales[this.locale] : null;
   }
   localeData(operation) {
+    const { type, assessment, date, culture } = operation;
+    if (this.currentLocale) {
+      return {
+        ...operation,
+        type: this.localeItem(type),
+        assessment: this.localeItem(assessment) ?? "Нет оценки",
+        culture: this.localeItem(culture),
+        date: this.localeDate(date)
+      };
+    }
     return {
       ...operation,
-      type: this.locales[this.locale][operation.type],
-      assessment:
-        this.locales[this.locale][operation.assessment] ?? "Нет оценки",
-      culture: this.locales[this.locale][operation.culture],
-      date: this.localeDate(operation.date)
+      date: this.localeDate(date)
     };
+  }
+  localeItem(item) {
+    return item in this.currentLocale ? this.currentLocale[item] : item;
   }
   localeDate({ year, month, day }) {
     const date = new Date(year, month, day);

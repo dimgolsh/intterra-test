@@ -8,13 +8,13 @@ export let OperationType;
   OperationType[(OperationType["RIGGING"] = 4)] = "RIGGING";
   OperationType[(OperationType["HARVESTING"] = 5)] = "HARVESTING"; // Сбор урожая
 })(OperationType || (OperationType = {}));
-export var Assessment;
+export let Assessment;
 (function(Assessment) {
   Assessment[(Assessment["EXCELLENT"] = 0)] = "EXCELLENT";
   Assessment[(Assessment["SATISFACTORILY"] = 1)] = "SATISFACTORILY";
   Assessment[(Assessment["BADLY"] = 2)] = "BADLY"; // Плохо
 })(Assessment || (Assessment = {}));
-export var Culture;
+export let Culture;
 (function(Culture) {
   Culture[(Culture["WHEAT"] = 0)] = "WHEAT";
 })(Culture || (Culture = {}));
