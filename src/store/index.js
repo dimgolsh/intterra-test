@@ -13,7 +13,7 @@ export default new Vuex.Store({
     locale: "ru-RU",
     loading: false,
     error: null,
-    operations: {},
+    operations: {}
   },
   mutations: {
     setLoading(state, payload) {
@@ -27,7 +27,7 @@ export default new Vuex.Store({
     },
     setOperations(state, payload) {
       state.operations = payload;
-    },
+    }
   },
   actions: {
     setLoading({ commit }, payload) {
@@ -40,20 +40,20 @@ export default new Vuex.Store({
       commit("clearError");
     },
     async getOperations({ commit, state }, params) {
-      commit('setLoading', true)
-      commit('clearError')
+      commit("setLoading", true);
+      commit("clearError");
       const { fieldId, query } = params;
       const operations = checkObj(query)
         ? await fieldService.getOperations(fieldId)
         : await fieldService.getOperationsFilter(query);
       const transformData = await operations.map(_transformOperation);
       const locale = new Locale(state.locale);
-      const localesData = await transformData.map((item) =>
+      const localesData = await transformData.map(item =>
         locale.localeData(item)
       );
       commit("setOperations", localesData);
-      commit('setLoading', false)
-    },
+      commit("setLoading", false);
+    }
   },
   getters: {
     loading(state) {
@@ -61,7 +61,7 @@ export default new Vuex.Store({
     },
     error(state) {
       return state.error;
-    },
+    }
   },
-  modules: {},
+  modules: {}
 });

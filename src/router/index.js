@@ -7,13 +7,14 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    redirect: '/field/112'
+    redirect: "/field/112"
   },
   {
     path: "/field/:id",
     name: "field",
-    component: () => import(/* webpackChunkName: "field" */ '@/views/FieldTable.vue'),
-}
+    component: () =>
+      import(/* webpackChunkName: "field" */ "@/views/FieldTable.vue")
+  }
 ];
 
 const router = new VueRouter({

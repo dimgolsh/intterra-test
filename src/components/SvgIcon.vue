@@ -1,10 +1,14 @@
 <template>
-  <img :src="`/img/icons/Svg/${iconClass}.svg`" :class="className" class="icon">
+  <img
+    :src="`/img/icons/Svg/${iconClass}.svg`"
+    :class="className"
+    class="icon"
+  />
 </template>
 
 <script>
 export default {
- name: 'SvgIcon',
+  name: "SvgIcon",
   props: {
     iconClass: {
       type: String,
@@ -12,15 +16,14 @@ export default {
     },
     className: {
       type: String,
-      default: ''
+      default: ""
     }
-  },
-}
+  }
+};
 </script>
 
 <style>
 .icon {
-    margin-right: 10px;
+  margin-right: 10px;
 }
-
 </style>
