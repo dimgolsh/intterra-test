@@ -1,7 +1,7 @@
 import Operation, {
   OperationType,
   Assessment,
-  Culture,
+  Culture
 } from "../models/Operation";
 import { filterObj } from "@/helpers";
 export default class FieldService {
@@ -15,7 +15,7 @@ export default class FieldService {
         comment: "Отлично вспахали",
         assessment: Assessment.EXCELLENT,
         culture: Culture.WHEAT,
-        status: 1,
+        status: 1
       }),
       new Operation({
         id: "f112-o1",
@@ -25,7 +25,7 @@ export default class FieldService {
         comment: "Все прошло нормально",
         assessment: Assessment.SATISFACTORILY,
         culture: Culture.WHEAT,
-        status: 1,
+        status: 1
       }),
       new Operation({
         id: "f112-o2",
@@ -35,7 +35,7 @@ export default class FieldService {
         comment: null,
         assessment: Assessment.BADLY,
         culture: Culture.WHEAT,
-        status: 1,
+        status: 1
       }),
       new Operation({
         id: "f112-o3",
@@ -45,7 +45,7 @@ export default class FieldService {
         comment: null,
         assessment: null,
         culture: Culture.WHEAT,
-        status: 0,
+        status: 0
       }),
       new Operation({
         id: "f112-o4",
@@ -55,7 +55,7 @@ export default class FieldService {
         comment: "Знатно полили",
         assessment: Assessment.EXCELLENT,
         culture: Culture.WHEAT,
-        status: 1,
+        status: 1
       }),
       new Operation({
         id: "f112-o5",
@@ -65,8 +65,8 @@ export default class FieldService {
         comment: null,
         assessment: null,
         culture: Culture.WHEAT,
-        status: 0,
-      }),
+        status: 0
+      })
     ];
   }
   /**
@@ -74,27 +74,27 @@ export default class FieldService {
    * @returns {Promise<Array<Operation>>}
    */
   getOperations() {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       setTimeout(() => {
-        const clonedOperations = this.operations.map((operation) => operation);
+        const clonedOperations = this.operations.map(operation => operation);
         resolve(clonedOperations);
       }, 10);
     });
   }
 
-  delay = (ms) => {
-    return new Promise((r) => setTimeout(() => r(), ms));
+  delay = ms => {
+    return new Promise(r => setTimeout(() => r(), ms));
   };
 
   getOperationsFilter(query = null) {
     const filter = {
       column: Object.keys(query)[0],
-      value: query[Object.keys(query)[0]],
+      value: query[Object.keys(query)[0]]
     };
     return this.delay(200).then(() => {
       return this.operations
-        .map((operation) => operation)
-        .filter((item) => filterObj(item, filter));
+        .map(operation => operation)
+        .filter(item => filterObj(item, filter));
     });
   }
 
@@ -106,7 +106,7 @@ export default class FieldService {
   getOperationSync(operationId = null) {
     if (operationId === null) return null;
     const operation = this.operations.find(
-      (operation) => operation.id === operationId
+      operation => operation.id === operationId
     );
     return operation || null;
   }
@@ -116,7 +116,7 @@ export default class FieldService {
    * @returns {Promise<Operation | null>}
    */
   getOperation(operationId = null) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       setTimeout(() => {
         const operation = this.getOperationSync(operationId);
         const clonedOperation = operation ? new Operation(operation) : null;
@@ -130,7 +130,7 @@ export default class FieldService {
    * @returns {Promise<Operation>}
    */
   saveOperation(operation) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       setTimeout(() => {
         const operationIndex = this.getOperationIndex(operation.id);
         const isExistingOperation = operationIndex !== -1;

@@ -4,21 +4,22 @@
       <h1>Операции на поле {{ $route.params.id }}</h1>
     </div>
     <FieldTableActions :filters="filters" />
-    <field-table :values="operations">
+    <field-table :values="operations" sort="date">
       <thead class="bg-gray">
         <tr>
           <th
             scope="col"
             v-for="column in columns"
             :key="column.key"
-            style="width: 10rem;"
+            :style="`width: ${column.width};`"
           >
             <sort-link :name="column.key">{{ column.title }}</sort-link>
           </th>
         </tr>
       </thead>
       <template #body="sort">
-        <tbody>
+        <transition-group tag="tbody" name="list">
+     
           <tr v-for="value in sort.values" :key="value.id">
             <th scope="row" class="opacity-8">{{ value.date | capitalize }}</th>
             <td class="font-weight-meduim">{{ value.type }}</td>
@@ -33,7 +34,8 @@
               </div>
             </td>
           </tr>
-        </tbody>
+  
+          </transition-group>
       </template>
     </field-table>
   </div>
@@ -48,31 +50,25 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      sortKey: ["date"],
-      sortOrder: ["asc"],
       params: {},
       columns: [
-        { title: "Дата", key: "date", width: "10rem" },
-        { title: "Операция", key: "type", width: "10rem" },
-        { title: "Культура", key: "culture", width: "10rem" },
+        { title: "Дата", key: "date", width: "5rem" },
+        { title: "Операция", key: "type", width: "20rem" },
+        { title: "Культура", key: "culture", width: "15rem" },
         { title: "Качество", key: "assessment", width: "10rem" }
       ],
-      filters: {
-        column: "status",
-        items: [
-          {
-            name: "Запланированные операции",
-            key: "status",
-            value: "0"
-          },
-
-          {
-            name: "Выполненные операции",
-            key: "status",
-            value: "1"
-          }
-        ]
-      }
+      filters: [
+        {
+          name: "Запланированные операции",
+          key: "status",
+          value: "0"
+        },
+        {
+          name: "Выполненные операции",
+          key: "status",
+          value: "1"
+        }
+      ]
     };
   },
 
@@ -106,23 +102,12 @@ export default {
     },
     fetchData() {
       this.$store.dispatch("getOperations", this.params);
-    },
-    sortBy: function(key) {
-      if (key == this.sortKey) {
-        this.sortOrder = this.sortOrder == "asc" ? "desc" : "asc";
-      } else {
-        this.sortKey = key;
-        this.sortOrder = "asc";
-      }
     }
   },
   computed: {
     ...mapState({
       operations: state => state.operations
-    }),
-    operationSorted: function() {
-      return this._.orderBy(this.operations, this.sortKey, this.sortOrder);
-    }
+    })
   }
 };
 </script>
@@ -138,5 +123,23 @@ export default {
   display: flex;
   align-items: center;
   margin-bottom: -1px;
+}
+.list-enter-active,
+.list-leave-active,
+.list-move {
+  transition: 500ms cubic-bezier(0.59, 0.12, 0.34, 0.95);
+  transition-property: opacity;
+}
+
+.list-enter {
+  opacity: 0;
+}
+
+.list-enter-to {
+  opacity: 1;
+}
+
+.list-leave-to {
+  opacity: 0;
 }
 </style>

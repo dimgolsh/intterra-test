@@ -47,7 +47,17 @@
 
 .sortInactive {
     color: $darkGray;
-  }
+}
+
 .sortActive {
     color: $blue;
-  }
+}
+
+.sortActive,
+.sortInactive {
+    margin-left: 5px;
+}
+
+.mr-5 {
+    margin-right: 5px;
+}

@@ -9,7 +9,7 @@ import FieldTableFIlters from "@/components/FieldTable/FieldTableFIlters";
 export default {
   props: {
     filters: {
-      type: Object,
+      type: Array,
       required: true
     }
   },

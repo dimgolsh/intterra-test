@@ -26,9 +26,3 @@ export default class Locale {
     })
   }
 }
-
-export const _localeOperations = (locale, operation) => {
-  console.log(locale);
-  console.log(operation);
-  return {};
-};

@@ -6,7 +6,7 @@
         class="sortActive"
         v-if="$parent.getCurrentSort() == name"
         v-html="$parent.getSortIcon()"
-      >▼</span>
+      ></span>
       <span class="sortInactive" v-else>▼</span>
     </slot>
   </a>

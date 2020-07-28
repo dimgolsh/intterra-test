@@ -1,9 +1,9 @@
 <template>
   <div class="table_filter_links">
     <router-link
-      v-for="filter in filters.items"
+      v-for="filter in filters"
       :key="filter.value"
-      :to="{ query: {  [filters.column] : filter.value}}"
+      :to="{ query: {  [filter.key] : filter.value}}"
       exact
       active-class="link-active"
       class="table_filter_link"
@@ -15,7 +15,7 @@
 export default {
   props: {
     filters: {
-      type: Object,
+      type: Array,
       required: true
     }
   }

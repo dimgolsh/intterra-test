@@ -22,26 +22,11 @@ export default {
     },
     sort: {
       type: String,
-      default: "id"
     },
-    ascIcon: {
-      type: String,
-      default: ""
-    },
-    descIcon: {
-      type: String,
-      default: ""
-    },
-    onSort: {
-      type: null,
-      default: null
-    }
   },
   data: function() {
     return {
-      currentDir: this.dir,
-      currentSort: this.sort,
-      sortKey: ["date"],
+      sortKey: this.sort ? [this.sort] : ["id"],
       sortOrder: ["asc"]
     };
   },
@@ -54,12 +39,8 @@ export default {
     getCurrentSort: function() {
       return this.sortKey;
     },
-    getSortIcon: function() {
-      if (this.sortOrder === "asc") {
-        return '▼';
-      } else {
-        return '▲';
-      }
+    getSortIcon() {
+      return this.sortOrder === "asc" ? "▼" : "▲";
     },
     sortBy: function(key) {
       if (key == this.sortKey) {
