@@ -3,7 +3,6 @@
     <div class="page_header">
       <h1>Операции на поле {{ $route.params.id }}</h1>
     </div>
-
     <FieldTableActions :filters="filters" />
     <TableLoader v-if="loading" />
     <field-table v-else :values="operations" sort="date">
