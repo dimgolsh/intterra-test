@@ -3,11 +3,12 @@
     <router-link
       v-for="filter in filters"
       :key="filter.value"
-      :to="{ query: {  [filter.key] : filter.value}}"
+      :to="{ query: { [filter.key]: filter.value } }"
       exact
       active-class="link-active"
       class="table_filter_link"
-    >{{filter.name}}</router-link>
+      >{{ filter.name }}</router-link
+    >
   </div>
 </template>
 

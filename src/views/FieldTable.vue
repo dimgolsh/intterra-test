@@ -3,8 +3,10 @@
     <div class="page_header">
       <h1>Операции на поле {{ $route.params.id }}</h1>
     </div>
+
     <FieldTableActions :filters="filters" />
-    <field-table :values="operations" sort="date">
+    <TableLoader v-if="loading" />
+    <field-table v-else :values="operations" sort="date">
       <thead class="bg-gray">
         <tr>
           <th
@@ -19,7 +21,6 @@
       </thead>
       <template #body="sort">
         <transition-group tag="tbody" name="list">
-     
           <tr v-for="value in sort.values" :key="value.id">
             <th scope="row" class="opacity-8">{{ value.date | capitalize }}</th>
             <td class="font-weight-meduim">{{ value.type }}</td>
@@ -34,8 +35,7 @@
               </div>
             </td>
           </tr>
-  
-          </transition-group>
+        </transition-group>
       </template>
     </field-table>
   </div>
@@ -44,6 +44,7 @@
 <script>
 import FieldTableActions from "@/components/FieldTable/FieldTableActions";
 import FieldTable from "@/components/FieldTable/FieldTable";
+import TableLoader from "@/components/ContentLoader/TableLoader";
 import SortLink from "@/components/FieldTable/FieldTableSortLink";
 import SvgIcon from "@/components/SvgIcon";
 import { mapState } from "vuex";
@@ -81,6 +82,7 @@ export default {
   components: {
     FieldTableActions,
     FieldTable,
+    TableLoader,
     SortLink,
     SvgIcon
   },
@@ -106,7 +108,8 @@ export default {
   },
   computed: {
     ...mapState({
-      operations: state => state.operations
+      operations: state => state.operations,
+      loading: state => state.loading
     })
   }
 };

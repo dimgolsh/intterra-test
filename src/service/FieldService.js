@@ -91,7 +91,7 @@ export default class FieldService {
       column: Object.keys(query)[0],
       value: query[Object.keys(query)[0]]
     };
-    return this.delay(200).then(() => {
+    return this.delay(1000).then(() => {
       return this.operations
         .map(operation => operation)
         .filter(item => filterObj(item, filter));

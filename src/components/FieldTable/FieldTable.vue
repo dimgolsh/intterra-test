@@ -21,8 +21,8 @@ export default {
       default: "asc"
     },
     sort: {
-      type: String,
-    },
+      type: String
+    }
   },
   data: function() {
     return {
