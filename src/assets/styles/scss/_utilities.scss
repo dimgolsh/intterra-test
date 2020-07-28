@@ -1,0 +1,53 @@
+.link-active {
+    color: $blue;
+}
+
+.bg-gray {
+    background: $gray
+}
+
+.font-weight-meduim {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.opacity-8 {
+    opacity: .8;
+}
+
+.pils {
+    background: black;
+    width: 20px;
+    height: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.excellent .pils {
+    background: $green
+}
+
+.satisfactorily .pils {
+    background: $yellow
+}
+
+.badly .pils {
+    background: $red
+}
+
+.noneMark {
+    .pils {
+        background: $light;
+    }
+
+    p {
+        opacity: .3;
+    }
+}
+
+.sortInactive {
+    color: $darkGray;
+  }
+.sortActive {
+    color: $blue;
+  }

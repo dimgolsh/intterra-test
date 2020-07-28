@@ -15,6 +15,9 @@ export enum Assessment {
     BADLY = 2           // Плохо
 }
 
+export enum Culture {
+    WHEAT = 0
+}
 export default class Operation {
     id?: string | null;             // ID Операции
     type: OperationType;            // Тип операции

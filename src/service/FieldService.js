@@ -1,4 +1,9 @@
-import Operation, { OperationType, Assessment } from "./models/Operation";
+import Operation, {
+  OperationType,
+  Assessment,
+  Culture,
+} from "../models/Operation";
+import { filterObj } from "@/helpers";
 export default class FieldService {
   constructor() {
     this.operations = [
@@ -9,6 +14,8 @@ export default class FieldService {
         area: 48.2,
         comment: "Отлично вспахали",
         assessment: Assessment.EXCELLENT,
+        culture: Culture.WHEAT,
+        status: 1,
       }),
       new Operation({
         id: "f112-o1",
@@ -17,6 +24,8 @@ export default class FieldService {
         area: 47.8,
         comment: "Все прошло нормально",
         assessment: Assessment.SATISFACTORILY,
+        culture: Culture.WHEAT,
+        status: 1,
       }),
       new Operation({
         id: "f112-o2",
@@ -25,6 +34,8 @@ export default class FieldService {
         area: 47.5,
         comment: null,
         assessment: Assessment.BADLY,
+        culture: Culture.WHEAT,
+        status: 1,
       }),
       new Operation({
         id: "f112-o3",
@@ -33,6 +44,8 @@ export default class FieldService {
         area: 48.2,
         comment: null,
         assessment: null,
+        culture: Culture.WHEAT,
+        status: 0,
       }),
       new Operation({
         id: "f112-o4",
@@ -41,6 +54,8 @@ export default class FieldService {
         area: 48.1,
         comment: "Знатно полили",
         assessment: Assessment.EXCELLENT,
+        culture: Culture.WHEAT,
+        status: 1,
       }),
       new Operation({
         id: "f112-o5",
@@ -49,6 +64,8 @@ export default class FieldService {
         area: 48.0,
         comment: null,
         assessment: null,
+        culture: Culture.WHEAT,
+        status: 0,
       }),
     ];
   }
@@ -64,6 +81,23 @@ export default class FieldService {
       }, 10);
     });
   }
+
+  delay = (ms) => {
+    return new Promise((r) => setTimeout(() => r(), ms));
+  };
+
+  getOperationsFilter(query = null) {
+    const filter = {
+      column: Object.keys(query)[0],
+      value: query[Object.keys(query)[0]],
+    };
+    return this.delay(200).then(() => {
+      return this.operations
+        .map((operation) => operation)
+        .filter((item) => filterObj(item, filter));
+    });
+  }
+
   /**
    * Имитирует синхронное получение операции по id
    * @param {string | null} operationId

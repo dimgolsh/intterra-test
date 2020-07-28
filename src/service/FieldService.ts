@@ -1,4 +1,4 @@
-import Operation, { OperationType, Assessment } from './models/Operation';
+import Operation, { OperationType, Assessment } from '../models/Operation';
 
 export default class FieldService {
     private operations: Array<Operation> = [
@@ -8,7 +8,7 @@ export default class FieldService {
             date: { year: 2018, month: 3, day: 12 },
             area: 48.2,
             comment: 'Отлично вспахали',
-            assessment: Assessment.EXCELLENT
+            assessment: Assessment.EXCELLENT,
         }),
         new Operation({
             id: 'f112-o1',

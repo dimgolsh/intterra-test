@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <router-view />
+    <header></header>
+    <div class="wrap">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <style lang="scss">
-
 </style>
