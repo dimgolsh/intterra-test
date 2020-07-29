@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import FieldTable from "@/views/FieldTable.vue";
 
 Vue.use(VueRouter);
 
@@ -12,11 +13,9 @@ const routes = [
   {
     path: "/field/:id",
     name: "field",
-    component: () =>
-      import(/* webpackChunkName: "field" */ "@/views/FieldTable.vue")
+    component: FieldTable
   }
 ];
-
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
