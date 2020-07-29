@@ -1,6 +1,6 @@
 <template>
   <img
-    :src="`/img/icons/Svg/${iconClass}.svg`"
+    :src="`img/icons/Svg/${iconClass}.svg`"
     :class="className"
     class="icon"
   />
