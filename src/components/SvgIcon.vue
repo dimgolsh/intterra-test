@@ -1,6 +1,6 @@
 <template>
   <img
-    :src="`img/icons/Svg/${iconClass}.svg`"
+    :src="`${publicPath}/img/icons/Svg/${iconClass}.svg`"
     :class="className"
     class="icon"
   />
@@ -8,6 +8,11 @@
 
 <script>
 export default {
+  data () {
+  return {
+    publicPath: process.env.BASE_URL
+  }
+},
   name: "SvgIcon",
   props: {
     iconClass: {
